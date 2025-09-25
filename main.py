@@ -71,8 +71,9 @@ def auto_course(url):
         open_section_and_play(sec, page)
 
 if __name__ == "__main__":
-    urls = "https://buaa.yuketang.cn/pro/lms/CTRhhgJSDtg/28447694/studycontent" # 工程伦理
+    #  "https://buaa.yuketang.cn/pro/lms/CTRhhgJSDtg/28447694/studycontent" # 工程伦理
     # "https://buaa.yuketang.cn/pro/lms/CSVPP3nZbQt/28325547/studycontent" # 人工智能安全与伦理
+    urls = "https://buaa.yuketang.cn/pro/lms/CTm6gJnfxsz/28491474/studycontent" # 矩阵
     auto_course(urls)
 
 
