@@ -18,7 +18,7 @@ def wait_until_finished(tab, timeout=7200):
         ele = tab.ele('xpath=//span[contains(text(), "完成度")]')
         if ele:
             text = ele.text.strip()
-            print("当前进度：", text)
+            # print("当前进度：", text)
             if "100%" in text:
                 print("视频已完成！")
                 break
