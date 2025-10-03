@@ -5,18 +5,10 @@ def get_sections(page):
     """获取所有小节元素"""
     sections = []
     # 获取所有章节
-    chapters = page.eles('.chapter-list')
-    # print(len(chapters))
-    for chap in chapters:
-        # 每个章节下的所有 section
-        sects = chap.ele('.content').eles('.section-list')
-        for sect in sects:
-            try:
-                s = sect.ele('.content').eles('.el-tooltip leaf-detail')
-                sections.extend(s)
-                # print(len(sects))
-            except:
-                pass
+    chapters = page.eles('.leaf-title text-ellipsis')
+    for chapter in chapters:
+        if '视频' in chapter.text:
+            sections.append(chapter)
     return sections
 
 def wait_until_finished(tab, timeout=7200):
@@ -26,7 +18,7 @@ def wait_until_finished(tab, timeout=7200):
         ele = tab.ele('xpath=//span[contains(text(), "完成度")]')
         if ele:
             text = ele.text.strip()
-            # print("当前进度：", text)
+            print("当前进度：", text)
             if "100%" in text:
                 print("视频已完成！")
                 break
@@ -47,7 +39,7 @@ def open_section_and_play(sec, page):
         new_tab = page.latest_tab
 
         # 点击播放按钮
-        play_btn = new_tab.ele('css=button.xt_video_bit_play_btn')
+        play_btn = new_tab.ele('.play-status-box')
         if play_btn:
             play_btn.click()
             print("播放中...")
@@ -71,9 +63,7 @@ def auto_course(url):
         open_section_and_play(sec, page)
 
 if __name__ == "__main__":
-    # "https://buaa.yuketang.cn/pro/lms/CTRhhgJSDtg/28447694/studycontent" # 工程伦理
-    # "https://buaa.yuketang.cn/pro/lms/CSVPP3nZbQt/28325547/studycontent" # 人工智能安全与伦理
-    urls = "https://buaa.yuketang.cn/pro/lms/CTm6gJnfxsz/28491474/studycontent" # 矩阵
+    urls = "https://buaa.yuketang.cn/pro/lms/CTmmnGpxVGJ/28502700/studycontent" #新时代
     auto_course(urls)
 
 
